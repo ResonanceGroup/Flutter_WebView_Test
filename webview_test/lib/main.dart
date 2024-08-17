@@ -72,7 +72,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-   late Widget displayedWidget = firstPage(webController: widget.firstPageWebController);
+   late Widget displayedWidget;
 
    List<String> labelList = ["First Page", "Second Page"]; // This list here is in the same order as the tabs
 
@@ -88,6 +88,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
+  void initState(){
+    super.initState();
+    displayedWidget = firstPage(webController: widget.firstPageWebController);
+    setSelectedIndexState(_tabSelectedIndex); // Just Added
+  }
+
+  @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -98,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return PlatformScaffold (
       appBar: PlatformAppBar(
         title: Text(navBarTitle),
-        trailingActions: [NavigationControls(wvController: (_tabSelectedIndex == 0) ? widget.juicePressWebController : widget.forumWebController)],
+        //trailingActions: [NavigationControls(wvController: (_tabSelectedIndex == 0) ? widget.firstPageWebController : widget.secondPageWebController)],
       ),
       body: displayedWidget,
       bottomNavBar: PlatformNavBar(

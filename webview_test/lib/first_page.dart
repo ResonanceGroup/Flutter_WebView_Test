@@ -10,7 +10,7 @@ import 'package:webview_test/webview.dart';
 
 class firstPage extends StatefulWidget{
   late WebViewController webController;
-  bool internetConnected = false;
+  bool internetConnected = true;
 
   firstPage({required this.webController, super.key});
 
