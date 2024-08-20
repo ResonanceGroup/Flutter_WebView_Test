@@ -96,19 +96,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return PlatformScaffold (
-      appBar: PlatformAppBar(
-        title: Text(navBarTitle),
-        //trailingActions: [NavigationControls(wvController: (_tabSelectedIndex == 0) ? widget.firstPageWebController : widget.secondPageWebController)],
+      return Scaffold (
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight), // You can adjust the height as needed
+        child: PlatformAppBar(
+          title: Text(navBarTitle),
+        //  trailingActions: (_tabSelectedIndex == 0 || _tabSelectedIndex == 3) ? [NavigationControls(wvController: (_tabSelectedIndex == 0) ? juicePressWebController : forumWebController)] : [],
+        ),
       ),
       body: displayedWidget,
-      bottomNavBar: PlatformNavBar(
+      bottomNavigationBar: PlatformNavBar(
         currentIndex: _tabSelectedIndex,
         itemChanged: (index){
           setSelectedIndexState(index);
@@ -131,6 +128,37 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     );
+
+    
+    // return PlatformScaffold (
+    //   appBar: PlatformAppBar(
+    //     title: Text(navBarTitle),
+    //     //trailingActions: [NavigationControls(wvController: (_tabSelectedIndex == 0) ? widget.firstPageWebController : widget.secondPageWebController)],
+    //   ),
+    //   body: displayedWidget,
+    //   bottomNavBar: PlatformNavBar(
+    //     currentIndex: _tabSelectedIndex,
+    //     itemChanged: (index){
+    //       setSelectedIndexState(index);
+    //     },
+    //     items: [
+    //       BottomNavigationBarItem(
+    //         icon: SvgPicture.asset(
+    //           'assets/home_outline.svg',
+    //           height: 25,
+    //           ),
+    //         label: "First Page",
+    //       ),
+    //       BottomNavigationBarItem(
+    //         icon: SvgPicture.asset(
+    //           'assets/blender_outline.svg',
+    //           height: 25,
+    //         ),
+    //         label: "Second Page",
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 
   getTabScreen(int tabIndex){
